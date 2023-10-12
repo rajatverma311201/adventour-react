@@ -1,0 +1,66 @@
+import { REQUEST } from "@/utils/constants";
+import { RequestBody, RequestContent, RequestMethod } from "types";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+export default class Fetch {
+    static async GET(url: string) {
+        const resp = await fetch(`${API_URL}/${url}`, {
+            method: REQUEST.GET,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await resp.json();
+
+        if (!resp.ok || resp.status >= 400) {
+            throw new Error(data.message || "Something went wrong");
+        }
+
+        return data;
+    }
+
+    static async POST(url: string, reqBody: RequestBody) {
+        console.log("reqBody", reqBody);
+        return this.requestFn(url, REQUEST.POST, reqBody);
+    }
+
+    static async PATCH(url: string, reqBody: RequestBody) {
+        return this.requestFn(url, REQUEST.PATCH, reqBody);
+    }
+
+    static async PUT(url: string, reqBody: RequestBody) {
+        return this.requestFn(url, REQUEST.PUT, reqBody);
+    }
+
+    static async DELETE(url: string) {
+        return this.requestFn(url, REQUEST.DELETE);
+    }
+
+    private static async requestFn(
+        url: string,
+        method: RequestMethod,
+        reqBody?: RequestBody,
+    ) {
+        const reqContent: RequestContent = {
+            method,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        if (reqBody) {
+            reqContent.body = JSON.stringify(reqBody);
+        }
+
+        const resp = await fetch(`${API_URL}/${url}`, reqContent);
+
+        const data = await resp.json();
+
+        if (!resp.ok || resp.status >= 400) {
+            throw new Error(data.message || "Something went wrong");
+        }
+
+        return data;
+    }
+}

@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
+import { ToursView } from "./features/tours/tours-view";
 
 function App() {
     return (
         <>
-            <div className="flex items-center justify-center text-center ">
+            <div className="flex items-center justify-center text-center">
                 <Card>
                     <CardHeader>
                         <CardTitle className="text-primary">
@@ -21,6 +22,8 @@ function App() {
                     </CardContent>
                 </Card>
             </div>
+
+            <ToursView />
         </>
     );
 }
