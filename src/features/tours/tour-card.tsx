@@ -10,7 +10,7 @@ interface TourCardProps {
 export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
     return (
         <>
-            <Card className="w-[350px] overflow-hidden">
+            <Card className="w-[350px] overflow-hidden dark:text-gray-300">
                 <div className="relative">
                     <div
                         className="relative"
