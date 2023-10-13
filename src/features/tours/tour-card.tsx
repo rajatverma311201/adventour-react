@@ -10,7 +10,7 @@ interface TourCardProps {
 export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
     return (
         <>
-            <Card className="w-[350px] overflow-hidden dark:text-gray-300">
+            <Card className="w-[350px] overflow-hidden dark:text-yellow-50/75">
                 <div className="relative">
                     <div
                         className="relative"
@@ -32,9 +32,7 @@ export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
                         </span>
                     </h3>
                 </div>
-                {/* </CardHeader> */}
                 <CardContent className="space-y-4 pt-5 text-sm">
-                    {/* <h2 className="text-2xl font-bold">{tour.name}</h2> */}
                     <p className="text-left text-sm font-bold uppercase text-primary">
                         {tour.difficulty} {tour.duration}-day tour
                     </p>
@@ -62,7 +60,7 @@ export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
                             </div>
                         </div>
                         <Button
-                            className=" rounded-full text-base font-semibold uppercase"
+                            className=" rounded-full text-xs font-semibold uppercase transition hover:-translate-y-1"
                             size={"lg"}
                         >
                             Details

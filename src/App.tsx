@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
-import { ToursView } from "./features/tours/tours-view";
+import { AuthTabs } from "./features/auth/auth-tabs";
 
 function App() {
     return (
@@ -23,7 +23,8 @@ function App() {
                 </Card>
             </div>
 
-            <ToursView />
+            {/* <ToursView /> */}
+            <AuthTabs />
         </>
     );
 }
