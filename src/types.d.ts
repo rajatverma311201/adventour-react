@@ -1,10 +1,18 @@
 declare module "types" {
-    export type User = {
-        id: string;
+    export interface User {
+        _id: string;
         name: string;
         email: string;
+        photo: string;
+        role: "user" | "guide" | "lead-guide" | "admin";
         password: string;
-    };
+        passwordConfirm: string;
+        passwordChangedAt: Date;
+        passwordResetToken: string;
+        passwordResetExpires: Date;
+        active: boolean;
+    }
+
     export interface Tour {
         _id: string;
         name: string;
@@ -25,7 +33,7 @@ declare module "types" {
         secretTour: boolean;
         startLocation: Location;
         locations: Location[];
-        guides: string[];
+        guides: string[] | User[];
     }
 
     export interface Location {
@@ -44,7 +52,13 @@ declare module "types" {
         method: RequestMethod;
         headers: { [key: string]: string };
         body?: string;
+        credentials: "include" | "omit" | "same-origin";
     }
 
     export type RequestMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
+
+    export interface ErrorResp {
+        status: string;
+        message: string;
+    }
 }

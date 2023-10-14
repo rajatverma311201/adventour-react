@@ -5,24 +5,10 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export default class Fetch {
     static async GET(url: string) {
-        const resp = await fetch(`${API_URL}/${url}`, {
-            method: REQUEST.GET,
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        const data = await resp.json();
-
-        if (!resp.ok || resp.status >= 400) {
-            throw new Error(data.message || "Something went wrong");
-        }
-
-        return data;
+        return this.requestFn(url, REQUEST.GET);
     }
 
     static async POST(url: string, reqBody: RequestBody) {
-        console.log("reqBody", reqBody);
         return this.requestFn(url, REQUEST.POST, reqBody);
     }
 
@@ -48,6 +34,7 @@ export default class Fetch {
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include",
         };
         if (reqBody) {
             reqContent.body = JSON.stringify(reqBody);

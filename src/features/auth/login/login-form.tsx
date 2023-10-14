@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useLogin } from "@/features/auth/login/use-login";
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -26,6 +27,8 @@ const formSchema = z.object({
 });
 
 export const LoginForm = () => {
+    const { login, isLoading } = useLogin();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -39,6 +42,11 @@ export const LoginForm = () => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values);
+        login(values, {
+            onSuccess: () => {
+                form.reset();
+            },
+        });
     }
 
     return (
@@ -91,7 +99,9 @@ export const LoginForm = () => {
                         />
                     </CardContent>
                     <CardFooter>
-                        <Button type="submit">Submit</Button>
+                        <Button disabled={isLoading} type="submit">
+                            Submit
+                        </Button>
                     </CardFooter>
                 </form>
             </Form>

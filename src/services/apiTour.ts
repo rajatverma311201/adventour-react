@@ -16,6 +16,5 @@ import { Tour } from "types";
 
 export const getTours = async (): Promise<Tour[]> => {
     const data = await Fetch.GET("api/v1/tours");
-
     return data.data;
 };

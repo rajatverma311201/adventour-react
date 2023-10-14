@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useSignup } from "@/features/auth/signup/use-signup";
 
 const formSchema = z.object({
     name: z.string().min(2),
@@ -29,6 +30,8 @@ const formSchema = z.object({
 });
 
 export const SignupForm = () => {
+    const { signup, isLoading } = useSignup();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -44,6 +47,11 @@ export const SignupForm = () => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values);
+        signup(values, {
+            onSuccess: () => {
+                form.reset();
+            },
+        });
     }
 
     return (
@@ -141,7 +149,9 @@ export const SignupForm = () => {
                         {/* </ScrollArea> */}
                     </CardContent>
                     <CardFooter>
-                        <Button type="submit">Submit</Button>
+                        <Button disabled={isLoading} type="submit">
+                            Submit
+                        </Button>
                     </CardFooter>
                 </form>
             </Form>
