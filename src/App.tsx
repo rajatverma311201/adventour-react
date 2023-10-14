@@ -1,30 +1,19 @@
 import "./App.css";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ModeToggle } from "@/components/mode-toggle";
-import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
-import { AuthTabs } from "./features/auth/auth-tabs";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AppLayout } from "./components/layout/app-layout";
+import { ToursView } from "./features/tours/tours-view";
 
 function App() {
     return (
         <>
-            <div className="flex items-center justify-center text-center">
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="text-primary">
-                            Mode Toggle
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex flex-col gap-4">
-                        <ModeToggle />
-                        <Button>Hello</Button>
-                        <Input />
-                    </CardContent>
-                </Card>
-            </div>
-
-            {/* <ToursView /> */}
-            <AuthTabs />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<AppLayout />}>
+                        <Route path="/" element={<ToursView />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
         </>
     );
 }

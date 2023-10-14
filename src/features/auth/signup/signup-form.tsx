@@ -47,7 +47,7 @@ export const SignupForm = () => {
     }
 
     return (
-        <Card>
+        <Card className="max-h-[75vh] overflow-scroll">
             <CardHeader>
                 <CardTitle className="text-primary">Sign Up</CardTitle>
                 <CardDescription>
@@ -57,7 +57,8 @@ export const SignupForm = () => {
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="">
-                    <CardContent className="space-y-4">
+                    <CardContent className=" space-y-4 overflow-auto">
+                        {/* <ScrollArea className="max-h-[75vh]"> */}
                         <FormField
                             control={form.control}
                             name="name"
@@ -137,6 +138,7 @@ export const SignupForm = () => {
                                 </FormItem>
                             )}
                         />
+                        {/* </ScrollArea> */}
                     </CardContent>
                     <CardFooter>
                         <Button type="submit">Submit</Button>

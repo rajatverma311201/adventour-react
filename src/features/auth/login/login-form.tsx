@@ -42,7 +42,7 @@ export const LoginForm = () => {
     }
 
     return (
-        <Card>
+        <Card className="max-h-[75vh] overflow-scroll">
             <CardHeader>
                 <CardTitle className="text-primary">Login</CardTitle>
             </CardHeader>

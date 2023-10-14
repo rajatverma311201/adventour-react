@@ -15,13 +15,12 @@ export const ToursView = () => {
     }
 
     return (
-        <div>
-            <h1>ToursView</h1>
-            <div className="flex flex-wrap items-center justify-center gap-10 px-2 py-10">
-                {tours?.map((tour: Tour) => (
-                    <TourCard key={tour._id} tour={tour} />
-                ))}
-            </div>
+        // <div>
+        <div className="flex flex-wrap items-center justify-center gap-10">
+            {tours?.map((tour: Tour) => (
+                <TourCard key={tour._id} tour={tour} />
+            ))}
         </div>
+        // </div>
     );
 };
