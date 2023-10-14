@@ -31,3 +31,8 @@ export const signup = async (
     });
     return data.data;
 };
+
+export const logout = async () => {
+    const url = "api/v1/users/logout";
+    return await Fetch.GET(url);
+};

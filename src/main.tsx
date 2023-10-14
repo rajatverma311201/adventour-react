@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { ThemeProvider } from "./components/theme-provider.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider } from "@/components/providers/theme-provider.tsx";
+import { ModalProvider } from "@/components/providers/modal-provider.tsx";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -17,7 +18,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <ThemeProvider defaultTheme="light">
             <QueryClientProvider client={queryClient}>
-                <App />
+                <ModalProvider>
+                    <App />
+                </ModalProvider>
             </QueryClientProvider>
         </ThemeProvider>
     </React.StrictMode>,

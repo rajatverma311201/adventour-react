@@ -6,6 +6,7 @@ export const useCurrentUser = () => {
     const {
         data: currentUser,
         isLoading: isLoadingCurrentUser,
+        isFetching: isFetchingCurrentUser,
         error,
     } = useQuery({
         queryKey: getCurrentUserKey(),
@@ -14,6 +15,7 @@ export const useCurrentUser = () => {
 
     return {
         currentUser,
+        isFetchingCurrentUser,
         isLoadingCurrentUser,
         error,
     };

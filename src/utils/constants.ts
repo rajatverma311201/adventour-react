@@ -7,3 +7,7 @@ export const REQUEST: { [key: string]: RequestMethod } = {
     PUT: "PUT",
     PATCH: "PATCH",
 };
+
+export const MODAL = {
+    AUTH: "authModal",
+};

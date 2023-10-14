@@ -1,7 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { login as apiLogin } from "@/services/apiAuth";
 import { toast } from "sonner";
 import { ErrorResp } from "types";
+import { useModal } from "@/hooks/use-modal";
+import { MODAL } from "@/utils/constants";
+import { getCurrentUserKey } from "@/utils/keys";
 
 interface MutationFnArgs {
     email: string;
@@ -9,6 +12,9 @@ interface MutationFnArgs {
 }
 
 export const useLogin = () => {
+    const { openModal } = useModal(MODAL.AUTH);
+    const queryClient = useQueryClient();
+
     const {
         mutate: login,
         isLoading,
@@ -20,7 +26,8 @@ export const useLogin = () => {
         onSuccess: (data) => {
             console.log(data);
             toast.success("Logged in Successfully");
-            // refresh();
+            queryClient.invalidateQueries(getCurrentUserKey());
+            openModal(false);
         },
         onError: (error: ErrorResp) => {
             console.log(error.message);

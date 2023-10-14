@@ -61,4 +61,6 @@ declare module "types" {
         status: string;
         message: string;
     }
+
+    export type ModalType = "authModal";
 }
