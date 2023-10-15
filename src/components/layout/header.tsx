@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useModal } from "@/hooks/use-modal";
 import { MODAL } from "@/utils/constants";
-import { User } from "lucide-react";
+import { HomeIcon, User } from "lucide-react";
 import { AuthUserPopver } from "@/features/auth/auth-user-popover";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
     const [tab, setTab] = useState("login");
@@ -19,7 +20,10 @@ export const Header = () => {
 
     return (
         <header className="fixed left-0 right-0 top-0 z-50 flex flex-1 items-center justify-between border-b-2 bg-accent px-4 py-3">
-            <h1>Header</h1>
+            {/* <h1>Header</h1> */}
+            <Link to="/">
+                <HomeIcon className="h-[1.75rem] w-[1.75rem] text-primary" />
+            </Link>
             <div className="flex items-center gap-5">
                 {!isFetchingCurrentUser && !currentUser && (
                     <>

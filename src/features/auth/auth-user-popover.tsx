@@ -8,6 +8,7 @@ import { AuthUserAvatar } from "@/features/auth/auth-user-avatar";
 import { LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLogout } from "./use-logout";
+import { useNavigate } from "react-router-dom";
 
 interface AuthUserPopoverProps {
     open: boolean;
@@ -19,6 +20,8 @@ export const AuthUserPopver: React.FC<AuthUserPopoverProps> = ({
     setOpen,
     children,
 }) => {
+    const navigate = useNavigate();
+
     const { logout, isLoading } = useLogout(() => {
         setOpen(false);
     });
@@ -39,6 +42,10 @@ export const AuthUserPopver: React.FC<AuthUserPopoverProps> = ({
                         size={"icon"}
                         variant={"outline"}
                         className="text-primary hover:text-primary/90"
+                        onClick={() => {
+                            navigate("/account");
+                            setOpen(false);
+                        }}
                     >
                         <Settings className="aspect-square h-[1.25rem]" />
                     </Button>
