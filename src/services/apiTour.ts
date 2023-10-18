@@ -18,3 +18,7 @@ export const getTours = async (): Promise<Tour[]> => {
     const data = await Fetch.GET("api/v1/tours");
     return data.data;
 };
+export const getTourBySlug = async (slug: string): Promise<Tour> => {
+    const data = await Fetch.GET(`api/v1/tours/slug/${slug}`);
+    return data.data;
+};

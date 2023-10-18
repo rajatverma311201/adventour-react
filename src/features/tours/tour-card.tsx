@@ -2,12 +2,19 @@ import { Tour } from "types";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Calendar, Flag, LucideIcon, MapPin, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 interface TourCardProps {
     tour: Tour;
 }
 export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
+    const navigate = useNavigate();
+
+    const handleGoToTour = () => {
+        navigate(`/tours/${tour.slug}`);
+    };
+
     return (
         <>
             <Card className="w-80 overflow-hidden dark:text-yellow-50/75 sm:w-[350px]">
@@ -62,6 +69,7 @@ export const TourCard: React.FC<TourCardProps> = ({ tour }) => {
                         <Button
                             className=" rounded-full text-xs font-semibold uppercase transition hover:-translate-y-1"
                             size={"lg"}
+                            onClick={handleGoToTour}
                         >
                             Details
                         </Button>

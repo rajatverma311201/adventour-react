@@ -43,7 +43,7 @@ export const AuthUserPopver: React.FC<AuthUserPopoverProps> = ({
                         variant={"outline"}
                         className="text-primary hover:text-primary/90"
                         onClick={() => {
-                            navigate("/account");
+                            navigate("/account/personal-info");
                             setOpen(false);
                         }}
                     >

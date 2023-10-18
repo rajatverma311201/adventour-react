@@ -63,3 +63,20 @@ body,
         @apply bg-background text-foreground;
     }
 }
+
+* {
+    animation: fadeIn 0.15s linear;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+html {
+    animation: none;
+}

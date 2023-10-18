@@ -3,11 +3,14 @@ import { AppLayout } from "@/components/layout/app-layout";
 import { ToursView } from "@/features/tours/tours-view";
 import { Toaster } from "sonner";
 import { useTheme } from "@/hooks/use-theme";
+
 import { AccountLayout } from "@/features/auth/account/account-layout";
-import { PersonalInfo } from "./features/auth/account/personal-info";
-import { ChangePassword } from "./features/auth/account/change-password";
-import { MyReviews } from "./features/auth/account/my-reviews";
-import { MyBookings } from "./features/auth/account/my-bookings";
+import { PersonalInfo } from "@/features/auth/account/personal-info";
+import { ChangePassword } from "@/features/auth/account/change-password";
+import { MyReviews } from "@/features/auth/account/my-reviews";
+import { MyBookings } from "@/features/auth/account/my-bookings";
+
+import { TourDetailsPage } from "@/pages/tour-details-page";
 
 function App() {
     const { theme } = useTheme();
@@ -15,10 +18,13 @@ function App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<AppLayout />}>
+                    <Route element={<AppLayout />}>
                         <Route path="/" element={<ToursView />} />
-                        <Route path="tours/*" element={<ToursView />} />
-                        <Route path="/account" element={<AccountLayout />}>
+                        <Route
+                            path="tours/:slug"
+                            element={<TourDetailsPage />}
+                        />
+                        <Route path="account" element={<AccountLayout />}>
                             <Route
                                 index
                                 path="personal-info"

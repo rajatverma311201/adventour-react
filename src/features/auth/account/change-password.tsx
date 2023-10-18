@@ -1,3 +1,7 @@
 export const ChangePassword = () => {
-    return <div>ChangePassword</div>;
+    return (
+        <h1 className="text-center text-4xl font-semibold text-primary">
+            Change Password
+        </h1>
+    );
 };

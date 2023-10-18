@@ -37,7 +37,7 @@ export default class Fetch {
             method,
             headers: {
                 "Content-Type": "application/json",
-                AUTHORIZATION: `Bearer ${jwtToken}`,
+                Authorization: `Bearer ${jwtToken}`,
             },
             // credentials: "include",
         };
