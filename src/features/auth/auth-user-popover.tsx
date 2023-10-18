@@ -22,7 +22,7 @@ export const AuthUserPopver: React.FC<AuthUserPopoverProps> = ({
 }) => {
     const navigate = useNavigate();
 
-    const { logout, isLoading } = useLogout(() => {
+    const { logout } = useLogout(() => {
         setOpen(false);
     });
     const { currentUser } = useCurrentUser();
@@ -51,7 +51,6 @@ export const AuthUserPopver: React.FC<AuthUserPopoverProps> = ({
                     </Button>
                     <Button
                         onClick={() => logout()}
-                        disabled={isLoading}
                         size={"icon"}
                         variant={"outline"}
                         className="text-primary hover:text-primary/90"

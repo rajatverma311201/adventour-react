@@ -3,8 +3,9 @@ import { User } from "types";
 
 interface AuthResponse {
     user: User;
-    token: string;
-    expiresIn: number;
+    jwtToken: string;
+    jwtTokenExpiry: number;
+    [key: string]: unknown;
 }
 
 export const login = async (

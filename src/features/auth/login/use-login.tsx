@@ -3,7 +3,7 @@ import { login as apiLogin } from "@/services/apiAuth";
 import { toast } from "sonner";
 import { ErrorResp } from "types";
 import { useModal } from "@/hooks/use-modal";
-import { MODAL } from "@/utils/constants";
+import { LS, MODAL } from "@/utils/constants";
 import { getCurrentUserKey } from "@/utils/keys";
 
 interface MutationFnArgs {
@@ -26,8 +26,16 @@ export const useLogin = () => {
         onSuccess: (data) => {
             console.log(data);
             toast.success("Logged in Successfully");
-            queryClient.invalidateQueries(getCurrentUserKey());
+            localStorage.setItem(
+                LS.JWT_TOKEN_KEY,
+                data[LS.JWT_TOKEN_KEY] as string,
+            );
+            localStorage.setItem(
+                LS.JWT_TOKEN_EXPIRY_KEY,
+                data[LS.JWT_TOKEN_EXPIRY_KEY] as string,
+            );
             openModal(false);
+            queryClient.invalidateQueries(getCurrentUserKey());
         },
         onError: (error: ErrorResp) => {
             console.log(error.message);

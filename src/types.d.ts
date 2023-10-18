@@ -52,7 +52,6 @@ declare module "types" {
         method: RequestMethod;
         headers: { [key: string]: string };
         body?: string;
-        credentials: "include" | "omit" | "same-origin";
     }
 
     export type RequestMethod = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
