@@ -36,6 +36,15 @@ declare module "types" {
         guides: string[] | User[];
     }
 
+    export interface Review {
+        _id: string;
+        review: string;
+        rating: number;
+        createdAt: Date;
+        tour: string | Tour;
+        user: string | User;
+    }
+
     export interface Location {
         type: string;
         coordinates: number[];

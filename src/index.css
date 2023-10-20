@@ -65,7 +65,7 @@ body,
 }
 
 * {
-    animation: fadeIn 0.15s linear;
+    animation: fadeIn 0.125s linear;
 }
 
 @keyframes fadeIn {
