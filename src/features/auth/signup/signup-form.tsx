@@ -21,6 +21,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useSignup } from "@/features/auth/signup/use-signup";
+import { ProviderAuth } from "../provider-auth";
+import { PROVIDER } from "@/utils/constants";
+import { Separator } from "@/components/ui/separator";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const formSchema = z.object({
     name: z.string().min(2),
@@ -46,22 +51,36 @@ export const SignupForm = () => {
     function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        const { name, email, password, passwordConfirm } = values;
         console.log(values);
-        signup(values, {
-            onSuccess: () => {
-                form.reset();
+        signup(
+            {
+                name,
+                email,
+                password,
+                passwordConfirm,
             },
-        });
+            {
+                onSuccess: () => {
+                    form.reset();
+                },
+            },
+        );
     }
 
     return (
         <Card className="max-h-[75vh] overflow-scroll">
             <CardHeader>
-                <CardTitle className="text-primary">Sign Up</CardTitle>
-                <CardDescription>
-                    Create tour account to join us.
+                <CardTitle className="text-primary">Signup</CardTitle>
+                <CardDescription className="flex justify-center gap-5">
+                    <ProviderAuth provider={PROVIDER.GOOGLE} Icon={FcGoogle} />
+                    <ProviderAuth provider={PROVIDER.GITHUB} Icon={FaGithub} />
                 </CardDescription>
             </CardHeader>
+            <Separator />
+            <h1 className="my-4 text-center text-xl font-medium text-secondary-foreground">
+                OR
+            </h1>
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="">

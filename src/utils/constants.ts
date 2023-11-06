@@ -1,4 +1,4 @@
-import { RequestMethod } from "types";
+import { AuthProvider, RequestMethod } from "types";
 
 export const REQUEST: { [key: string]: RequestMethod } = {
     POST: "POST",
@@ -15,4 +15,9 @@ export const MODAL = {
 export const LS = {
     JWT_TOKEN_KEY: "jwtToken",
     JWT_TOKEN_EXPIRY_KEY: "jwtTokenExpiry",
+};
+
+export const PROVIDER: { [key: string]: AuthProvider } = {
+    GOOGLE: "google",
+    GITHUB: "github",
 };

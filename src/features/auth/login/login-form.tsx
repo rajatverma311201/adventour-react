@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
+    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -20,6 +21,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useLogin } from "@/features/auth/login/use-login";
+
+import { ProviderAuth } from "../provider-auth";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { PROVIDER } from "@/utils/constants";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -41,19 +48,32 @@ export const LoginForm = () => {
     function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        const email = values.email!;
+        const password = values.password!;
         console.log(values);
-        login(values, {
-            onSuccess: () => {
-                form.reset();
+        login(
+            { email, password },
+            {
+                onSuccess: () => {
+                    form.reset();
+                },
             },
-        });
+        );
     }
 
     return (
         <Card className="max-h-[75vh] overflow-scroll">
             <CardHeader>
                 <CardTitle className="text-primary">Login</CardTitle>
+                <CardDescription className="flex justify-center gap-5">
+                    <ProviderAuth provider={PROVIDER.GOOGLE} Icon={FcGoogle} />
+                    <ProviderAuth provider={PROVIDER.GITHUB} Icon={FaGithub} />
+                </CardDescription>
             </CardHeader>
+            <Separator />
+            <h1 className="my-4 text-center text-xl font-medium text-secondary-foreground">
+                OR
+            </h1>
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>

@@ -37,3 +37,12 @@ export const logout = async () => {
     const url = "api/v1/users/logout";
     return await Fetch.GET(url);
 };
+
+export const providerAuth = async (
+    token: string,
+    provider: "google" | "github",
+) => {
+    const url = `api/v1/auth/provider?name=${provider}`;
+    const { data } = await Fetch.POST(url, { token });
+    return data;
+};

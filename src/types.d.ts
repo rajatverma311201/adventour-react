@@ -70,5 +70,7 @@ declare module "types" {
         message: string;
     }
 
+    export type AuthProvider = "google" | "github";
+
     export type ModalType = "authModal";
 }

@@ -12,8 +12,12 @@ import { MyBookings } from "@/features/auth/account/my-bookings";
 
 import { TourDetailsPage } from "@/pages/tour-details-page";
 
+import { firebaseConfig } from "./config/firebase";
+import { useEffect } from "react";
+
 function App() {
     const { theme } = useTheme();
+
     return (
         <>
             <BrowserRouter>
