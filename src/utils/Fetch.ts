@@ -1,8 +1,4 @@
-import {
-    //  LS,
-
-    REQUEST,
-} from "@/utils/constants";
+import { LS, REQUEST } from "@/utils/constants";
 import { RequestBody, RequestContent, RequestMethod } from "types";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -33,17 +29,17 @@ export default class Fetch {
         method: RequestMethod,
         reqBody?: RequestBody,
     ) {
-        // const lsItem = localStorage.getItem(LS.JWT_TOKEN_KEY);
-        // const jwtToken = lsItem ? lsItem.toString() : "";
+        const lsItem = localStorage.getItem(LS.JWT_TOKEN_KEY);
+        const jwtToken = lsItem ? lsItem.toString() : "";
         // const jwtTokenExpiry = localStorage.getItem(LS.JWT_TOKEN_EXPIRY_KEY);
 
         const reqContent: RequestContent = {
             method,
             headers: {
                 "Content-Type": "application/json",
-                // Authorization: `Bearer ${jwtToken}`,
+                Authorization: `Bearer ${jwtToken}`,
             },
-            credentials: "include",
+            // credentials: "include",
         };
         console.log(reqContent);
         if (reqBody) {
