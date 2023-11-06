@@ -3,14 +3,22 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+const {
+    VITE_FB_API_KEY,
+    VITE_FB_AUTH_DOMAIN,
+    VITE_FB_PROJECT_ID,
+    VITE_FB_STORAGE_BUCKET,
+    VITE_FB_MESSAGING_SENDER_ID,
+    VITE_FB_APP_ID,
+} = import.meta.env;
+
 const firebaseConfig = {
-    apiKey: "AIzaSyA55_PDCPXtYWAaZ7evw9THaIQzhYxVYXE",
-    authDomain: "adventour-mern.firebaseapp.com",
-    projectId: "adventour-mern",
-    storageBucket: "adventour-mern.appspot.com",
-    messagingSenderId: "362560836161",
-    appId: "1:362560836161:web:5e6c795d7b194aa0056cc0",
+    apiKey: VITE_FB_API_KEY,
+    authDomain: VITE_FB_AUTH_DOMAIN,
+    projectId: VITE_FB_PROJECT_ID,
+    storageBucket: VITE_FB_STORAGE_BUCKET,
+    messagingSenderId: VITE_FB_MESSAGING_SENDER_ID,
+    appId: VITE_FB_APP_ID,
 };
 
 // Initialize Firebase
